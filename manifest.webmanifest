@@ -1,0 +1,10 @@
+{
+  "name":"XÁC MINH HOÀN THÀNH CÔNG VIỆC",
+  "short_name":"Xác Minh Công Việc",
+  "start_url":".",
+  "display":"standalone",
+  "background_color":"#fbfaff",
+  "theme_color":"#8b5cf6",
+  "lang":"vi",
+  "icons":[]
+}
