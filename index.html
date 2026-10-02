@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#8b5cf6">
+  <meta name="description" content="XÁC MINH HOÀN THÀNH CÔNG VIỆC - quản lý ca làm, giờ công và thu nhập">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css">
+  <title>XÁC MINH HOÀN THÀNH CÔNG VIỆC</title>
+</head>
+<body>
+<div id="toast" class="toast" role="status"></div>
+
+<header class="topbar">
+  <button id="menuBtn" class="icon-btn" aria-label="Mở menu">☰</button>
+  <div>
+    <div class="brand">XÁC MINH</div>
+    <div class="brand-sub">HOÀN THÀNH CÔNG VIỆC</div>
+  </div>
+  <button id="bellBtn" class="icon-btn" aria-label="Thông báo">♢</button>
+</header>
+
+<div id="drawer" class="drawer" aria-hidden="true">
+  <div class="drawer-head">
+    <div>
+      <strong>XÁC MINH HOÀN THÀNH CÔNG VIỆC</strong>
+      <small>Bản local • dữ liệu trên thiết bị</small>
+    </div>
+    <button id="closeMenu" class="icon-btn">×</button>
+  </div>
+  <nav id="drawerNav" class="drawer-nav"></nav>
+</div>
+<div id="backdrop" class="backdrop"></div>
+
+<main id="app" class="page"></main>
+
+<nav class="bottom-nav" id="bottomNav">
+  <button data-route="dashboard">⌂<span>Tổng quan</span></button>
+  <button data-route="calendar">▣<span>Lịch</span></button>
+  <button data-route="stats">⌁<span>Thống kê</span></button>
+  <button data-route="menu">•••<span>Khác</span></button>
+</nav>
+
+<template id="shiftFormTemplate">
+  <form id="shiftForm" class="form-grid">
+    <input type="hidden" id="shiftId">
+    <label>Tên công việc *
+      <input id="jobName" required maxlength="120" placeholder="Ví dụ: Phục vụ ca tối">
+    </label>
+    <label>Vị trí làm việc *
+      <select id="position" required></select>
+    </label>
+    <button type="button" id="addPositionInline" class="link-btn">＋ Thêm vị trí mới</button>
+    <div class="two-col">
+      <label>Ngày *
+        <input id="date" type="date" required>
+      </label>
+      <label class="switch-label">OFF
+        <input id="off" type="checkbox">
+        <span class="switch"></span>
+      </label>
+    </div>
+    <div class="two-col">
+      <label>Giờ vào
+        <input id="start" type="time" step="60">
+      </label>
+      <label>Giờ ra
+        <input id="end" type="time" step="60">
+      </label>
+    </div>
+    <label>Mức lương / giờ (VNĐ)
+      <input id="hourlyRate" type="number" min="0" step="100" inputmode="numeric">
+    </label>
+    <section>
+      <div class="section-title">Phí cộng thêm</div>
+      <div id="extras" class="extras"></div>
+      <button type="button" id="addExtra" class="secondary-btn">＋ Thêm phụ cấp / Ship / thưởng</button>
+    </section>
+    <label>Ghi chú
+      <textarea id="note" rows="3" placeholder="Ghi chú cho ca này"></textarea>
+    </label>
+    <div class="two-col">
+      <div class="photo-field">
+        <label>📸 Ảnh đầu ca</label>
+        <div class="photo-actions">
+          <button type="button" class="secondary-btn mini" data-photo-camera="start">📷 Chụp ảnh</button>
+          <button type="button" class="secondary-btn mini" data-photo-album="start">🖼️ Chọn từ album</button>
+        </div>
+        <input id="photoStartCamera" class="photo-input-hidden" type="file" accept="image/*" capture="environment">
+        <input id="photoStartAlbum" class="photo-input-hidden" type="file" accept="image/*">
+        <div id="photoStartPreview" class="photo-preview"></div>
+      </div>
+      <div class="photo-field">
+        <label>📸 Ảnh cuối ca</label>
+        <div class="photo-actions">
+          <button type="button" class="secondary-btn mini" data-photo-camera="end">📷 Chụp ảnh</button>
+          <button type="button" class="secondary-btn mini" data-photo-album="end">🖼️ Chọn từ album</button>
+        </div>
+        <input id="photoEndCamera" class="photo-input-hidden" type="file" accept="image/*" capture="environment">
+        <input id="photoEndAlbum" class="photo-input-hidden" type="file" accept="image/*">
+        <div id="photoEndPreview" class="photo-preview"></div>
+      </div>
+    </div>
+    <div id="shiftPreview" class="calc-box"></div>
+    <div class="form-actions">
+      <button type="button" class="secondary-btn" data-action="cancel">Hủy</button>
+      <button class="primary-btn" type="submit">Lưu ca</button>
+    </div>
+  </form>
+</template>
+
+<script src="app.js"></script><script>if("serviceWorker" in navigator) window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));</script>
+</body>
+</html>
